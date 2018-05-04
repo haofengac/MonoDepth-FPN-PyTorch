@@ -17,12 +17,14 @@ A simple end-to-end model with fast convergence achieves state-of-the-art perfor
 * The NYU Depth V2 dataset contains a variety of indoor scenes, with 249 scenes for training and 215 scenes for testing. We used the official split for training and testing.
 * Following previous works, we used the official toolbox which uses the Colorization method proposed by Levin et al. to fill in the missing values of depth map in the training set.
 * Following previous works, we evaluated our model using the official evaluation set of 654 densely labeled image pairs.
+* We employed random crop, random rotate, color jitter of brightness, contrast, saturation and hue. To save time during training, we perform data augmentation in advance by running ```dataset/augment.py```
 
 
 ### KITTI Dataset
 * The KITTI dataset consists of 61 outdoor scenes with “city”, “road”, and “residential” categories.
 * Following previous works, we used the same to fill in the missing values of the sparse depth maps in the training set.
 * To compare with performances of previous studies, we employed the evaluation split used by Eigen et al.
+* For better visualization in quantitative evaluation, we filled in the missing depth value in the ground truth depth map.
 
 ## Model
 
@@ -54,6 +56,11 @@ The gradient of depth maps is obtained by a Sobel filter; the gradient loss is t
 ![img](https://latex.codecogs.com/gif.latex?L_%7B%5Ctextup%7Bnormal%7D%7D%20%3D%20%5Cfrac%7B1%7D%7Bn%7D%20%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20%5Cbigg%28%201%20-%20%5Cfrac%7B%5Clangle%20n%5Ed_i%2C%20n%5Ep_i%20%5Crangle%7D%7B%7C%7Cn%5Ed_i%7C%7C%5Ctextbf%7B%20%7D%7C%7Cn%5Ep_i%7C%7C%7D%20%5Cbigg%29)
 
 We also employed the normal vector loss proposed by Hu et al., which helps refining details.
+
+## Discussion
+
+* FPN is an effective backbone for monocular depth estimation because of its ability to extract features and semantics at different scales. It can achieve its potential if guided by proper loss functions.
+* Gradient and normal losses help prevent the model getting stuck in local optimum and guide it toward better convergence.
 
 ## To Run
 
