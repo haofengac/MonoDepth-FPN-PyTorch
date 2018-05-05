@@ -67,8 +67,8 @@ The depth loss is RMSE in log scale, which we found converges better than L1 and
 The gradient of depth maps is obtained by a Sobel filter; the gradient loss is the L1 norm of the difference.
 
 ### Surface Normal Loss
-We also employed the normal vector loss proposed by Hu et al., which helps refining details.
 ![img](https://latex.codecogs.com/gif.latex?L_%7B%5Ctextup%7Bnormal%7D%7D%20%3D%20%5Cfrac%7B1%7D%7Bn%7D%20%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20%5Cbigg%28%201%20-%20%5Cfrac%7B%5Clangle%20n%5Ed_i%2C%20n%5Ep_i%20%5Crangle%7D%7B%7C%7Cn%5Ed_i%7C%7C%5Ctextbf%7B%20%7D%7C%7Cn%5Ep_i%7C%7C%7D%20%5Cbigg%29)
+We also employed the normal vector loss proposed by Hu et al., which helps refining details.
 
 The weight ratio between the three loss was set to 1:1:1.
 
@@ -89,10 +89,10 @@ Performance comparison on the NYU Depth V2 dataset. Ours: proposed framework tra
 <p align="center"><img src='https://github.com/xanderchf/i2d/blob/master/nyuv2_performance.png' width=600></p>
 
 ### KITTI
-<p align="center"><img src='performance_table.png' width=900></p>
+<p align="center"><img src='https://github.com/xanderchf/i2d/blob/master/kitti_performance.png' width=900></p>
 
 We use the following depth evaluation metrics used by Eigen et al.:
-<p align="center"><img src='metrics.png' width=500></p>
+<p align="center"><img src='metrics.png' width=400></p>
 where T is the number of valid pixels in the test set.
 
 ## Discussion
