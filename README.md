@@ -69,7 +69,8 @@ Performance comparison on the KITTI dataset. Ours: proposed framework trained wi
 <p align="center"><img src='performance_table.png' width=900></p>
 
 We use the following depth evaluation metrics used by Eigen et al.:
-<p align="center"><img src='metrics.png'></p>
+<p align="center"><img src='metrics.png' width=500></p>
+where T is the number of valid pixels in the test set.
 
 ## Discussion
 
