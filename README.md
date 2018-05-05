@@ -107,8 +107,7 @@ where T is the number of valid pixels in the test set.
 * Godard et al. and Kuznietsov et al. introduced unsupervised and semi-supervised methods that relies on 3D geometric assumptions of left-right consistency. They trained the network using binocular image data.
 * Fu et al. proposed a framework based on classification of discretized depth ranges and regression. They supervised depth prediction at different resolutions and used a fusion network to produce the final output.
 * Hu et al. proposed a novel loss of normal vectors in addition to the conventional depth and gradient losses. They first trained a base network without skip connections, and then train the refine network using the novel loss after freezing the weights of the base network.
-* Our work: No FC layers needed, FPN provides unified feature map with strong semantic information. Evaluation only at a single stage.
-
+* Our work: Fully convolutional with no FC layers needed, FPN provides a straightforward and unified backbone to extract features maps that incorporates strong and localized semantic information. We employ an easy to follow curriculum to add in gradient loss and normal loss during training, all losses are calculated on the output feature maps instead of intermediate ones.
 
 ## Other Attempts this Semester
 
