@@ -102,7 +102,13 @@ where T is the number of valid pixels in the test set.
 * Some existing state-of-the-art methods ourperform ours in certain metrics, and we believe that this is due to the adaptive BerHu loss. We will try to incorporate this loss soon.
 
 ## Related Work
-Single image depth estimation is a problem first explored by Eigen et al. 
+* Eigen et al. were the first to use CNNs for depth estimation: predicting a coarse global output and then a finer local network.
+* Laina et al. explored CNNs pre-trained with AlexNet, VGG16 and ResNet.
+* Godard et al. and Kuznietsov et al. introduced unsupervised and semi-supervised methods that relies on 3D geometric assumptions of left-right consistency. They trained the network using binocular image data.
+* Fu et al. proposed a framework based on classification of discretized depth ranges and regression. They supervised depth prediction at different resolutions and used a fusion network to produce the final output.
+* Hu et al. proposed a novel loss of normal vectors in addition to the conventional depth and gradient losses. They first trained a base network without skip connections, and then train the refine network using the novel loss after freezing the weights of the base network.
+* Our work: No FC layers needed, FPN provides unified feature map with strong semantic information. Evaluation only at a single stage.
+
 
 ## Other Attempts this Semester
 
