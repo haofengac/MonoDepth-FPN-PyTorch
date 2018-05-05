@@ -2,7 +2,7 @@
 
 [![License][license]][license-url]
 
-A simple end-to-end model with fast convergence achieves state-of-the-art performance in depth prediction. This is a class project for Advanced Computer Vision (CS 7476) at Georgia Tech. In this project, we used a Feature Pyramid Network (FPN) backbone to estimate depth map by taking a single RGB image. We tested the performance of our model on the NYU Depth V2 Dataset and the KITTI Dataset.
+A simple end-to-end model with fast convergence achieves state-of-the-art performance in depth prediction. This is a class project for Advanced Computer Vision (CS 7476) at Georgia Tech. In this project, we used a Feature Pyramid Network (FPN) backbone to estimate depth map from a single input RGB image. We tested the performance of our model on the NYU Depth V2 Dataset and the KITTI Dataset (Eigen Split).
 
 ## Requirements
 
@@ -22,20 +22,19 @@ A simple end-to-end model with fast convergence achieves state-of-the-art perfor
 
 ### KITTI Dataset
 * The KITTI dataset consists of 61 outdoor scenes with “city”, “road”, and “residential” categories.
-* Following previous works, we used the same to fill in the missing values of the sparse depth maps in the training set.
-* To compare with performances of previous studies, we employed the evaluation split used by Eigen et al.
+* Following previous works, we used the same NYU tool box to fill in the missing values of the sparse depth maps in the training set.
+* To compare with the performances of previous studies, we evaluate on the Eigen test split of KITTI dataset.
 * For better visualization in quantitative evaluation, we filled in the missing depth value in the ground truth depth map.
 
 ## Model
 
 <p align="center"><img src='https://github.com/xanderchf/i2d/blob/master/architecture.png' width=600></p>
 
-* Used Feature Pyramid Network (FPN) with ResNet101 as backbone (shaded yellow), loaded ImageNet pretrained weight.
-* Used pixel shuffle for upsampling and fuse feature maps with add operation; bilinear interpolation is employed after pixel shuffle to tackle the problem of inconsistent size.
+* Used Feature Pyramid Network (FPN) with ResNet101 as backbone (shaded yellow), loaded ImageNet pretrained weight as weight initialization.
+* Used pixel-shuffle for upsampling and fuse feature maps with add operation; bilinear interpolation is employed after pixel-shuffle to deal with inconsistent feature map size.
 * Two consecutive 3x3 convolutions for feature processing.
-* No linearity in the top-down branch of FPN, and ReLU in other convolution layers, and Sigmoid in the prediction layer for better stability.
-* Trained on the weighted sum of the depth loss, the gradient loss, and the normal loss for 20 
-epochs; gradient loss added after epoch 1, and normal loss added after epoch 10.
+* No non-linearity in the top-down branch of FPN, and ReLU in other convolution layers, and Sigmoid in the prediction layer for better stability.
+* Trained on the weighted sum of the depth loss, the gradient loss, and the normal loss for 20 epochs; gradient loss added after epoch 1, and normal loss added after epoch 10.
 * Outputs prediction of size ¼, and evaluated after bilinear upsampling.
 
 ## Loss Function
@@ -45,7 +44,7 @@ We employed three parts in the loss function in our model. The loss is a weighte
 ### Depth Loss
 ![img](https://latex.codecogs.com/gif.latex?L_%7B%5Ctextup%7Bdepth%7D%7D%20%3D%20%5Cfrac%7B1%7D%7Bn%7D%20%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20%5Csqrt%5B%5D%7B%5Clog%5E2%28d_i%29%20-%20%5Clog%5E2%28p_i%29%7D)
 
-The depth loss is RMSE in log scale, which we found converges better than L1 and L2 loss.Supervising in log scale makes the classifier focus more on near objects.
+The depth loss is RMSE in log scale, which we found converges better than L1 and L2 norm. Supervising in log scale makes the classifier focus more on closer objects.
 
 ### Gradient Loss
 ![img](https://latex.codecogs.com/gif.latex?L_%7B%5Ctextup%7Bgrad%7D%7D%20%3D%20%5Cfrac%7B1%7D%7Bn%7D%20%5Csum_%7Bi%3D1%7D%5E%7Bn%7D%20%5Cbig%7C%5Cbig%7C%20%5Cnabla%20%5Ctextbf%7Bd%7D%20-%20%5Cnabla%20%5Ctextbf%7Bp%7D%20%5Cbig%7C%5Cbig%7C_1)
