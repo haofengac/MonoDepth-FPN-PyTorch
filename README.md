@@ -63,6 +63,11 @@ Comparison with state-of-the-art methods:
 More comparison:
 <p align="center"><img src='https://github.com/xanderchf/i2d/blob/master/kitti.png' width=600></p>
 
+## Quantitative Evaluation
+
+Performance comparison on the KITTI dataset. Ours: proposed framework trained with depth, gradient, and normal loss:
+<p align="center"><img src='performance_table.png' width=600></p>
+
 ## Discussion
 
 * FPN is an effective backbone for monocular depth estimation because of its ability to extract features and semantics at different scales. It can achieve its potential if guided by proper loss functions.
