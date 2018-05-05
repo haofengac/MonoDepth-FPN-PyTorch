@@ -27,15 +27,15 @@ To visualize the reconstructed data, run the jupyter notebook in vis.ipynb.
 
 ## Data Processing
 ### NYU Depth V2 Dataset
-* The NYU Depth V2 dataset contains a variety of indoor scenes, with 249 scenes for training and 215 scenes for testing. We used the official split for training and testing.
+* The [NYU Depth V2 dataset] contains a variety of indoor scenes, with 249 scenes for training and 215 scenes for testing. We used the official split for training and testing. This [github page] provides a very detailed walkthrough and matlab code for data processing.
 * Following previous works, we used the official toolbox which uses the Colorization method proposed by Levin et al. to fill in the missing values of depth map in the training set.
 * To make comparison with previous works, we evaluated our model using the official evaluation set of 654 densely labeled image pairs.
 * The images and depth maps in the NYU Depth V2 dataset are both of size 640x480. During training, we loaded the images as-is, and downscaled the depth maps to 160x120. The proposed model produces depth maps of size 160x120, and upsampled to the original size for evaluation.
 * We employed random crop, random rotate of 10 degrees, color jitter of brightness, contrast, saturation and hue of variation 0.1. To save time during training, we performed data augmentation in advance by running ```dataset/augment.py```.
-
+* PyTorch does not support transformation for both the input and the target, so we implemented joint transforms for data augmentation.
 
 ### KITTI Dataset
-* The KITTI dataset consists of 61 outdoor scenes with “city”, “road”, and “residential” categories. Following the official tutorial, we got about 22k image and depth map pairs in the training dataset.
+* The [KITTI dataset] consists of 61 outdoor scenes with “city”, “road”, and “residential” categories. Following the official tutorial, we got about 22k image and depth map pairs in the training dataset.
 * Following previous works, we used the same NYU tool box to fill in the missing values of the sparse depth maps in the training set.
 * To compare with the performances of previous studies, we evaluate on the test split of KITTI dataset proposed by Eigen et al.
 * The images and depth maps in the KITTI dataset are both of size about 1280x384. During training, we downscaled the images to size 640x192, and downscaled the depth maps to 160x48. The proposed model produces depth maps of size 160x48, and upsampled to the original size for evaluation.
@@ -78,7 +78,7 @@ The weight ratio between the three loss was set to 1:1:1.
 
 ### KITTI
 Comparison with state-of-the-art methods:
-<p align="center"><img src='https://github.com/xanderchf/i2d/blob/master/comparison_kitti.png' width=900></p>
+<p align="center"><img src='https://github.com/xanderchf/i2d/blob/master/kitti_comparison.png' width=900></p>
 More comparison:
 <p align="center"><img src='https://github.com/xanderchf/i2d/blob/master/kitti.png' width=600></p>
 
@@ -99,26 +99,35 @@ where T is the number of valid pixels in the test set.
 
 * FPN is an effective backbone for monocular depth estimation because of its ability to extract features and semantics at different scales. It can achieve its potential if guided by proper loss functions.
 * Gradient and normal losses help prevent the model getting stuck in local optimum and guide it toward better convergence, as shown in the ablation study.
+* Some existing state-of-the-art methods ourperform ours in certain metrics, and we believe that this is due to the adaptive BerHu loss. We will try to incorporate this loss soon.
 
 ## Related Work
-
+Single image depth estimation is a problem first explored by Eigen et al. 
 
 ## Other Attempts this Semester
 
+Because most of the state-of-the-art papers do not release their code, in the first half of the semester we implemented two models. The first one is a semi-supervised version of depth estimation following Kuznietsov et al., that is, use the monocular images and depth map for training, and evaluate depth map prediction as well as binocular image reconstruction from disparity. However, in this method, camera parameters are needed for depth prediction, and binocular dataset is also needed for training. We did not continue exploring the semi-supervised approach for more datasets to benchmark. We also implemented the Regression-Classification Cascaded Network (RCCN) proposed by Fu et al.
 
 ## Future Work
 
-
+We are participating in the Single Image Depth Estimation challenge of [Robust Vision Challenge] of CVPR 2018. The challenge evaluates on two datasets: the KITTI dataset and the ScanNet Dataset. The key idea for the challenge is to use a single set of model weights to achieve prediction of depth map for two distinct datasets. Such evaluation makes prediction less dependent on the biases of datasets and aims for better robustness. We have set up the ScanNet dataset and are currently training the Robust Vision Challenge version of our model. We believe that the adaptive BerHu loss is more useful under this context.
 
 ## To-dos
 
+- [x] Add ablation study for NYU Depth V2
+- [x] Add ablation study for KITTI
 - [x] Add visualization ipynb
+- [ ] Try to train with BerHu loss
 - [ ] Add support for the ScanNet Dataset
 - [ ] Add code for CVPR 2018 ROB Challenge
 
 <!-- Markdown link & img dfn's -->
+[KITTI dataset]: http://www.cvlibs.net/datasets/kitti/
+[NYU Depth V2 dataset]: https://cs.nyu.edu/~silberman/datasets/nyu_depth_v2.html
+[github page]: https://github.com/janivanecky/Depth-Estimation/tree/master/dataset
 [license]: https://img.shields.io/github/license/mashape/apistatus.svg
 [license-url]: https://github.com/xanderchf/i2d/blob/master/LICENSE
+[Robust Vision Challenge]: http://robustvision.net/
 
 ## References
 * Silberman, Nathan, et al. "Indoor segmentation and support inference from rgbd images." European Conference on Computer Vision. Springer, Berlin, Heidelberg, 2012.
