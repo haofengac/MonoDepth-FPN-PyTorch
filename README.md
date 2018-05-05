@@ -34,7 +34,7 @@ A simple end-to-end model with fast convergence achieves state-of-the-art perfor
 * Used pixel-shuffle for upsampling and fuse feature maps with add operation; bilinear interpolation is employed after pixel-shuffle to deal with inconsistent feature map size.
 * Two consecutive 3x3 convolutions for feature processing.
 * No non-linearity in the top-down branch of FPN, and ReLU in other convolution layers, and Sigmoid in the prediction layer for better stability.
-* Trained on the weighted sum of the depth loss, the gradient loss, and the normal loss for 20 epochs; gradient loss added after epoch 1, and normal loss added after epoch 10.
+* Trained on the weighted sum of the depth loss, the gradient loss, and the normal loss for 20 epochs for the NYU Depth V2 dataset, and 40 epochs for the KITTI dataset; gradient loss added after epoch 1, and normal loss added after epoch 10.
 * Outputs prediction of size ¼, and evaluated after bilinear upsampling.
 
 ## Loss Function
@@ -58,7 +58,10 @@ We also employed the normal vector loss proposed by Hu et al., which helps refin
 
 ## Qualitative Evaluation
 
-<p align="center"><img src='https://github.com/xanderchf/i2d/blob/master/kitti.png' width=800></p>
+Comparison with state-of-the-art methods:
+<p align="center"><img src='https://github.com/xanderchf/i2d/blob/master/comparison_kitti.png' width=900></p>
+More comparison:
+<p align="center"><img src='https://github.com/xanderchf/i2d/blob/master/kitti.png' width=600></p>
 
 ## Discussion
 
