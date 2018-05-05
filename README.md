@@ -56,6 +56,10 @@ The gradient of depth maps is obtained by a Sobel filter; the gradient loss is t
 
 We also employed the normal vector loss proposed by Hu et al., which helps refining details.
 
+## Qualitative Evaluation
+
+<p align="center"><img src='https://github.com/xanderchf/i2d/blob/master/kitti.png' width=800></p>
+
 ## Discussion
 
 * FPN is an effective backbone for monocular depth estimation because of its ability to extract features and semantics at different scales. It can achieve its potential if guided by proper loss functions.
@@ -71,10 +75,6 @@ To continue training from a saved model, use
 python3 main_fpn.py --cuda --bs 6 --r True --checkepoch 10
 ```
 To visualize the reconstructed data, run the jupyter notebook in vis.ipynb.
-
-## Qualitative Results
-Qualitative results and comparison with state-of-the-art methods. Ground-truth (GT) has been interpolated for visualization.
-![img](comparison_kitti.png)
 
 ## To-dos
 
