@@ -73,6 +73,10 @@ python3 main_fpn.py --cuda --bs 6 --r True --checkepoch 10
 ```
 To visualize the reconstructed data, run the jupyter notebook in vis.ipynb.
 
+## Qualitative Results
+Qualitative results and comparison with state-of-the-art methods. Ground-truth (GT) has been interpolated for visualization.
+
+
 ## To-dos
 
 - [x] Add visualization ipynb
