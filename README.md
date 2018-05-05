@@ -66,7 +66,7 @@ More comparison:
 ## Quantitative Evaluation
 
 Performance comparison on the KITTI dataset. Ours: proposed framework trained with depth, gradient, and normal loss:
-<p align="center"><img src='performance_table.png' width=600></p>
+<p align="center"><img src='performance_table.png' width=900></p>
 
 ## Discussion
 
