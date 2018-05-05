@@ -57,15 +57,22 @@ The gradient of depth maps is obtained by a Sobel filter; the gradient loss is t
 We also employed the normal vector loss proposed by Hu et al., which helps refining details.
 
 ## Qualitative Evaluation
+### NYU Depth V2
+<p align="center"><img src='https://github.com/xanderchf/i2d/blob/master/comparison_nyuv2.png' width=900></p>
 
+### KITTI
 Comparison with state-of-the-art methods:
 <p align="center"><img src='https://github.com/xanderchf/i2d/blob/master/comparison_kitti.png' width=900></p>
 More comparison:
 <p align="center"><img src='https://github.com/xanderchf/i2d/blob/master/kitti.png' width=600></p>
 
-## Quantitative Evaluation
 
-Performance comparison on the KITTI dataset. Ours: proposed framework trained with depth, gradient, and normal loss:
+## Quantitative Evaluation
+### NYU Depth V2
+Performance comparison on the NYU Depth V2 dataset. Ours: proposed framework trained with depth, gradient, and normal loss:
+<p align="center"><img src='https://github.com/xanderchf/i2d/blob/master/nyuv2_performance.png' width=600></p>
+
+### KITTI
 <p align="center"><img src='performance_table.png' width=900></p>
 
 We use the following depth evaluation metrics used by Eigen et al.:
