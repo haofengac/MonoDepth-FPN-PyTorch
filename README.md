@@ -1,4 +1,4 @@
-# MonoDepth-FPN: Single Image Depth Estimation with FPN
+# MonoDepth-FPN
 
 [![License][license]][license-url]
 
