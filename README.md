@@ -2,7 +2,7 @@
 
 [![License][license]][license-url]
 
-A simple end-to-end model with fast convergence that achieves state-of-the-art performance in depth prediction. This is a class project for Advanced Computer Vision (CS 7476) at Georgia Tech. In this project, we used a Feature Pyramid Network (FPN) backbone to estimate depth map from a single input RGB image. We tested the performance of our model on the NYU Depth V2 Dataset (Official Split) and the KITTI Dataset (Eigen Split).
+A simple end-to-end model with fast convergence that achieves state-of-the-art performance in depth prediction. In this project, we used a Feature Pyramid Network (FPN) backbone to estimate depth map from a single input RGB image. We tested the performance of our model on the NYU Depth V2 Dataset (Official Split) and the KITTI Dataset (Eigen Split).
 
 ## Requirements
 
@@ -101,22 +101,13 @@ where T is the number of valid pixels in the test set.
 * Godard et al. and Kuznietsov et al. introduced unsupervised and semi-supervised methods that relies on 3D geometric assumptions of left-right consistency. They trained the network using binocular image data.
 * Fu et al. proposed a framework based on classification of discretized depth ranges and regression. They supervised depth prediction at different resolutions and used a fusion network to produce the final output.
 * Hu et al. proposed a novel loss of normal vectors in addition to the conventional depth and gradient losses. They first trained a base network without skip connections, and then train the refine network using the novel loss after freezing the weights of the base network.
-* Our work: Fully convolutional with no FC layers needed, FPN provides a straightforward and unified backbone to extract features maps that incorporates strong and localized semantic information. We employ an easy to follow curriculum to add in gradient loss and normal loss during training, all losses are calculated on the output feature maps instead of intermediate ones.
-
-## Other Attempts this Semester
-
-Because most of the state-of-the-art papers do not release their code, in the first half of the semester we implemented two models. The first one is a semi-supervised version of depth estimation following Kuznietsov et al., that is, use the monocular images and depth map for training, and evaluate depth map prediction as well as binocular image reconstruction from disparity. However, in this method, camera parameters are needed for depth prediction, and binocular dataset is also needed for training. We did not continue exploring the semi-supervised approach for more datasets to benchmark. We also implemented the Regression-Classification Cascaded Network (RCCN) proposed by Fu et al.
-
-## Future Work
-
-We are participating in the Single Image Depth Estimation challenge of [Robust Vision Challenge] of CVPR 2018. The challenge evaluates on two datasets: the KITTI dataset and the ScanNet Dataset. The key idea for the challenge is to use a single set of model weights to achieve prediction of depth map for two distinct datasets. Such evaluation makes prediction less dependent on the biases of datasets and aims for better robustness. We have set up the ScanNet dataset and are currently training the Robust Vision Challenge version of our model. We believe that the adaptive BerHu loss is more useful under this context.
+* This project: Fully convolutional with no FC layers needed, FPN provides a straightforward and unified backbone to extract features maps that incorporates strong and localized semantic information. We employ an easy to follow curriculum to add in gradient loss and normal loss during training, all losses are calculated on the output feature maps instead of intermediate ones.
 
 ## To-dos
 
 - [x] Add ablation study for NYU Depth V2
 - [x] Add ablation study for KITTI
 - [x] Add visualization ipynb
-- [ ] Try to train with BerHu loss
 - [ ] Add support for the ScanNet Dataset
 - [ ] Add code for CVPR 2018 ROB Challenge
 
