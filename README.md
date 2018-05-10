@@ -73,9 +73,6 @@ We also employed the normal vector loss proposed by Hu et al., which helps refin
 The weight ratio between the three loss was set to 1:1:1.
 
 ## Qualitative Evaluation
-### NYU Depth V2
-<p align="center"><img src='https://github.com/xanderchf/i2d/blob/master/comparison_nyuv2.png' width=900></p>
-
 ### KITTI
 Comparison with state-of-the-art methods:
 <p align="center"><img src='https://github.com/xanderchf/i2d/blob/master/kitti_comparison.png' width=900></p>
@@ -84,9 +81,6 @@ More comparison:
 
 
 ## Quantitative Evaluation
-### NYU Depth V2
-Performance comparison on the NYU Depth V2 dataset. Ours: proposed framework trained with depth, gradient, and normal loss:
-<p align="center"><img src='https://github.com/xanderchf/i2d/blob/master/nyuv2_performance.png' width=600></p>
 
 ### KITTI
 <p align="center"><img src='https://github.com/xanderchf/i2d/blob/master/kitti_performance.png' width=900></p>
