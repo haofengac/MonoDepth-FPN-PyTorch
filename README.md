@@ -1,4 +1,4 @@
-# I2D: Single Image Depth Estimation with FPN
+# MonoDepth-FPN: Single Image Depth Estimation with FPN
 
 [![License][license]][license-url]
 
