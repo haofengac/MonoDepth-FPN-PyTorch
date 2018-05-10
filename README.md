@@ -1,8 +1,8 @@
-# MonoDepth-FPN
+# MonoDepth-FPN-PyTorch
 
 [![License][license]][license-url]
 
-A simple end-to-end model with fast convergence that achieves state-of-the-art performance in depth prediction. In this project, we used a Feature Pyramid Network (FPN) backbone to estimate depth map from a single input RGB image. We tested the performance of our model on the NYU Depth V2 Dataset (Official Split) and the KITTI Dataset (Eigen Split).
+A simple end-to-end model that achieves state-of-the-art performance in depth prediction implemented in PyTorch. We used a Feature Pyramid Network (FPN) backbone to estimate depth map from a single input RGB image. We tested the performance of our model on the NYU Depth V2 Dataset (Official Split) and the KITTI Dataset (Eigen Split).
 
 ## Requirements
 
