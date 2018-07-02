@@ -93,7 +93,7 @@ where T is the number of valid pixels in the test set.
 
 * FPN is an effective backbone for monocular depth estimation because of its ability to extract features and semantics at different scales. It can achieve its potential if guided by proper loss functions.
 * Gradient and normal losses help prevent the model getting stuck in local optimum and guide it toward better convergence, as shown in the ablation study.
-* Some existing state-of-the-art methods ourperform ours in certain metrics, and we believe that this is due to the adaptive BerHu loss. We will try to incorporate this loss soon.
+* Some existing state-of-the-art methods ourperform ours in certain metrics, and we believe that this is due to the adaptive BerHu loss.
 
 ## Related Work
 * Eigen et al. were the first to use CNNs for depth estimation: predicting a coarse global output and then a finer local network.
@@ -103,21 +103,12 @@ where T is the number of valid pixels in the test set.
 * Hu et al. proposed a novel loss of normal vectors in addition to the conventional depth and gradient losses. They first trained a base network without skip connections, and then train the refine network using the novel loss after freezing the weights of the base network.
 * This project: Fully convolutional with no FC layers needed, FPN provides a straightforward and unified backbone to extract features maps that incorporates strong and localized semantic information. We employ an easy to follow curriculum to add in gradient loss and normal loss during training, all losses are calculated on the output feature maps instead of intermediate ones.
 
-## To-dos
-
-- [x] Add ablation study for NYU Depth V2
-- [x] Add ablation study for KITTI
-- [x] Add visualization ipynb
-- [ ] Add support for the ScanNet Dataset
-- [ ] Add code for CVPR 2018 ROB Challenge
-
 <!-- Markdown link & img dfn's -->
 [KITTI dataset]: http://www.cvlibs.net/datasets/kitti/
 [NYU Depth V2 dataset]: https://cs.nyu.edu/~silberman/datasets/nyu_depth_v2.html
 [github page]: https://github.com/janivanecky/Depth-Estimation/tree/master/dataset
 [license]: https://img.shields.io/github/license/mashape/apistatus.svg
 [license-url]: https://github.com/xanderchf/i2d/blob/master/LICENSE
-[Robust Vision Challenge]: http://robustvision.net/
 
 ## References
 * Eigen, D., Puhrsch, C., Fergus, R.: Depth map prediction from a single image using a multiscale
